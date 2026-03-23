@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth4U × Uni2Chain — Trust Engine Proposal</title>
+
+    <!-- Fonts: Syne (display) + DM Sans (body) + Space Mono (mono) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           CSS CUSTOM PROPERTIES (THEME)
+           Light theme with Uni2Chain brand greens
+           =========================================== */
+        :root {
+            /* Core palette — LIGHT THEME */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7f9fb;
+            --bg-card: #f0f4f3;
+            --bg-card-hover: #e8edec;
+            --bg-dark-section: #0f1f1a;
+
+            /* Green spectrum — Uni2Chain brand extracted from logo */
+            --green-brand: #2e9e6e;
+            --green-dark: #1a7a54;
+            --green-deeper: #146347;
+            --green-light: #e6f5ee;
+            --green-lighter: #f0faf5;
+            --green-accent: #3cb371;
+            --green-muted: rgba(46, 158, 110, 0.12);
+            --green-glow: rgba(46, 158, 110, 0.08);
+
+            /* Gold accent for premium/pricing */
+            --gold: #c8963e;
+            --gold-light: #fdf6ea;
+            --gold-muted: rgba(200, 150, 62, 0.1);
+
+            /* Red for alerts */
+            --red-alert: #d94452;
+            --red-light: #fef2f2;
+            --red-muted: rgba(217, 68, 82, 0.08);
+
+            /* Text — dark on light */
+            --text-primary: #1a2b25;
+            --text-secondary: #506a60;
+            --text-muted: #8fa39a;
+            --text-on-dark: #e8f0ec;
+            --text-on-dark-muted: #9ab5a8;
+
+            /* Typography */
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+
+            --title-size: clamp(1.8rem, 5vw, 4rem);
+            --h2-size: clamp(1.3rem, 3.5vw, 2.5rem);
+            --h3-size: clamp(1rem, 2.5vw, 1.5rem);
+            --body-size: clamp(0.75rem, 1.4vw, 1.05rem);
+            --small-size: clamp(0.65rem, 1vw, 0.85rem);
+            --tag-size: clamp(0.55rem, 0.8vw, 0.75rem);
+
+            /* Spacing */
+            --slide-padding: clamp(1.5rem, 4vw, 5rem);
+            --content-gap: clamp(0.75rem, 2vw, 2rem);
+            --element-gap: clamp(0.25rem, 1vw, 1rem);
+
+            /* Animation */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.7s;
+        }
+
+        /* ===========================================
+           RESET & BASE
+           =========================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===========================================
+           VIEWPORT FITTING: MANDATORY BASE STYLES
+           =========================================== */
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: var(--bg-primary);
+        }
+
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden;
+            padding: var(--slide-padding);
+        }
+
+        .card, .container, .content-box {
+            max-width: min(90vw, 1100px);
+            max-height: min(80vh, 700px);
+        }
+
+        .feature-list, .bullet-list {
+            gap: clamp(0.4rem, 1vh, 1rem);
+        }
+
+        .feature-list li, .bullet-list li {
+            font-size: var(--body-size);
+            line-height: 1.4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+        }
+
+        img, .image-container {
+            max-width: 100%;
+            max-height: min(50vh, 400px);
+            object-fit: contain;
+        }
+
+        /* ===========================================
+           GLOBAL TYPOGRAPHY
+           =========================================== */
+        h1, h2, h3, h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: var(--title-size); }
+        h2 { font-size: var(--h2-size); }
+        h3 { font-size: var(--h3-size); }
+
+        p, li {
+            font-size: var(--body-size);
+            line-height: 1.55;
+            color: var(--text-secondary);
+        }
+
+        /* ===========================================
+           SUBTLE BACKGROUND PATTERN
+           Light geometric grid
+           =========================================== */
+        .slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(46, 158, 110, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 158, 110, 0.04) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===========================================
+           SLIDE VARIANTS
+           =========================================== */
+
+        /* --- Title slide (dark brand section) --- */
+        .slide--title {
+            background: var(--bg-dark-section);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide--title::before {
+            background-image:
+                linear-gradient(rgba(46, 158, 110, 0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 158, 110, 0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        .slide--title .slide-content {
+            align-items: center;
+            gap: clamp(0.75rem, 2vh, 1.5rem);
+        }
+
+        .slide--title h1 {
+            color: var(--text-on-dark);
+            font-weight: 800;
+            font-size: clamp(2rem, 5.5vw, 4.5rem);
+        }
+
+        .slide--title h1 .green {
+            color: var(--green-accent);
+        }
+
+        .slide--title .subtitle {
+            font-size: clamp(0.85rem, 1.8vw, 1.2rem);
+            color: var(--text-on-dark-muted);
+            max-width: 600px;
+        }
+
+        .slide--title .logo-img {
+            width: clamp(50px, 8vw, 80px);
+            height: auto;
+            margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);
+        }
+
+        /* --- Section header slide (dark) --- */
+        .slide--section {
+            background: var(--bg-dark-section);
+        }
+
+        .slide--section::before {
+            background-image:
+                radial-gradient(circle at 30% 70%, rgba(46, 158, 110, 0.1) 0%, transparent 50%),
+                linear-gradient(rgba(46, 158, 110, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(46, 158, 110, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 60px 60px, 60px 60px;
+        }
+
+        .slide--section .section-number {
+            font-family: var(--font-mono);
+            font-size: clamp(0.7rem, 1.2vw, 1rem);
+            color: var(--green-accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .slide--section h2 {
+            font-size: clamp(1.8rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--text-on-dark);
+            margin-top: clamp(0.3rem, 1vh, 0.75rem);
+        }
+
+        .slide--section p {
+            color: var(--text-on-dark-muted);
+        }
+
+        .slide--section .slide-footer {
+            color: var(--text-on-dark-muted);
+        }
+
+        /* --- Content slide (light) --- */
+        .slide--content {
+            background: var(--bg-primary);
+        }
+
+        .slide--content .slide-content {
+            gap: var(--content-gap);
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .slide--content .slide-header {
+            display: flex;
+            align-items: baseline;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            margin-bottom: clamp(0.2rem, 0.5vh, 0.4rem);
+        }
+
+        .slide--content .slide-header .num {
+            font-family: var(--font-mono);
+            font-size: var(--small-size);
+            color: var(--green-brand);
+            letter-spacing: 0.1em;
+        }
+
+        /* ===========================================
+           COMPONENTS
+           =========================================== */
+
+        /* --- Tags --- */
+        .tag {
+            display: inline-block;
+            padding: clamp(0.15rem, 0.4vh, 0.3rem) clamp(0.4rem, 1vw, 0.75rem);
+            border-radius: 100px;
+            font-family: var(--font-mono);
+            font-size: var(--tag-size);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .tag--green {
+            background: var(--green-light);
+            color: var(--green-dark);
+            border: 1px solid rgba(46, 158, 110, 0.2);
+        }
+
+        .tag--gold {
+            background: var(--gold-light);
+            color: var(--gold);
+            border: 1px solid rgba(200, 150, 62, 0.2);
+        }
+
+        .tag--red {
+            background: var(--red-light);
+            color: var(--red-alert);
+            border: 1px solid rgba(217, 68, 82, 0.15);
+        }
+
+        /* Dark slide tags */
+        .slide--section .tag--green,
+        .slide--title .tag--green {
+            background: rgba(46, 158, 110, 0.15);
+            color: var(--green-accent);
+            border-color: rgba(60, 179, 113, 0.3);
+        }
+
+        /* --- Cards --- */
+        .info-card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(46, 158, 110, 0.1);
+            border-radius: clamp(8px, 1vw, 16px);
+            padding: clamp(0.75rem, 2vw, 1.5rem);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            border-color: rgba(46, 158, 110, 0.25);
+            box-shadow: 0 4px 20px rgba(46, 158, 110, 0.06);
+        }
+
+        .info-card h4 {
+            font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+            color: var(--text-primary);
+            margin-bottom: clamp(0.25rem, 0.5vh, 0.5rem);
+        }
+
+        .info-card p {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        /* --- Highlight box --- */
+        .highlight-box {
+            background: var(--green-lighter);
+            border-left: 3px solid var(--green-brand);
+            border-radius: 0 clamp(6px, 0.8vw, 12px) clamp(6px, 0.8vw, 12px) 0;
+            padding: clamp(0.6rem, 1.5vw, 1.25rem);
+        }
+
+        .highlight-box p {
+            color: var(--text-primary);
+            font-size: var(--small-size);
+        }
+
+        .highlight-box strong {
+            color: var(--green-deeper);
+        }
+
+        .highlight-box--gold {
+            background: var(--gold-light);
+            border-left-color: var(--gold);
+        }
+
+        .highlight-box--gold strong {
+            color: var(--gold);
+        }
+
+        .highlight-box--red {
+            background: var(--red-light);
+            border-left-color: var(--red-alert);
+        }
+
+        .highlight-box--red strong {
+            color: var(--red-alert);
+        }
+
+        /* --- Tables --- */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--small-size);
+        }
+
+        .data-table th {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: var(--small-size);
+            color: var(--green-dark);
+            text-align: left;
+            padding: clamp(0.3rem, 0.8vh, 0.6rem) clamp(0.4rem, 1vw, 0.75rem);
+            border-bottom: 2px solid var(--green-brand);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .data-table td {
+            padding: clamp(0.3rem, 0.7vh, 0.55rem) clamp(0.4rem, 1vw, 0.75rem);
+            border-bottom: 1px solid rgba(46, 158, 110, 0.08);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        .data-table td:first-child {
+            color: var(--text-primary);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* --- Two/Three column layout --- */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(0.75rem, 2vw, 2rem);
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: clamp(0.5rem, 1.5vw, 1.25rem);
+        }
+
+        /* --- Bullet list --- */
+        .bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.3rem, 0.8vh, 0.65rem);
+        }
+
+        .bullets li {
+            position: relative;
+            padding-left: clamp(1rem, 2vw, 1.5rem);
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: clamp(0.35rem, 0.7vh, 0.5rem);
+            width: clamp(4px, 0.5vw, 6px);
+            height: clamp(4px, 0.5vw, 6px);
+            border-radius: 50%;
+            background: var(--green-brand);
+        }
+
+        .bullets li.red::before {
+            background: var(--red-alert);
+        }
+
+        .bullets li strong {
+            color: var(--text-primary);
+        }
+
+        /* --- Ecosystem diagram --- */
+        .eco-hub {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(0.5rem, 1.5vh, 1.25rem);
+        }
+
+        .eco-center {
+            background: var(--green-light);
+            border: 2px solid var(--green-brand);
+            border-radius: clamp(8px, 1vw, 16px);
+            padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem);
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(46, 158, 110, 0.12);
+        }
+
+        .eco-center h3 {
+            color: var(--green-dark);
+            font-size: clamp(0.9rem, 2vw, 1.4rem);
+        }
+
+        .eco-center p {
+            font-size: var(--tag-size);
+            color: var(--text-muted);
+        }
+
+        .eco-branches {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.4rem, 1vw, 0.75rem);
+            width: 100%;
+            max-width: min(90vw, 900px);
+        }
+
+        .eco-node {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(46, 158, 110, 0.12);
+            border-radius: clamp(6px, 0.8vw, 12px);
+            padding: clamp(0.4rem, 1vw, 0.75rem);
+            text-align: center;
+            transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+
+        .eco-node:hover {
+            border-color: var(--green-brand);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(46, 158, 110, 0.1);
+        }
+
+        .eco-node .node-icon {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            margin-bottom: clamp(0.15rem, 0.3vh, 0.3rem);
+        }
+
+        .eco-node h4 {
+            font-size: clamp(0.65rem, 1.1vw, 0.85rem);
+            color: var(--text-primary);
+        }
+
+        .eco-node p {
+            font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+            color: var(--text-muted);
+        }
+
+        /* --- Roadmap timeline --- */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.5rem, 1.2vh, 0.9rem);
+        }
+
+        .timeline-phase {
+            display: grid;
+            grid-template-columns: clamp(80px, 12vw, 140px) 1fr;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            align-items: start;
+        }
+
+        .phase-label {
+            text-align: right;
+            padding-right: clamp(0.5rem, 1vw, 1rem);
+            border-right: 2px solid var(--green-brand);
+        }
+
+        .phase-label .phase-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: var(--small-size);
+            color: var(--green-dark);
+        }
+
+        .phase-label .phase-weeks {
+            font-family: var(--font-mono);
+            font-size: var(--tag-size);
+            color: var(--text-muted);
+        }
+
+        .phase-content h4 {
+            font-size: var(--small-size);
+            color: var(--text-primary);
+            margin-bottom: clamp(0.15rem, 0.3vh, 0.25rem);
+        }
+
+        .phase-content p {
+            font-size: clamp(0.6rem, 0.9vw, 0.78rem);
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        /* --- Case study cards --- */
+        .case-card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(46, 158, 110, 0.1);
+            border-radius: clamp(8px, 1vw, 14px);
+            padding: clamp(0.6rem, 1.5vw, 1.1rem);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.15rem, 0.4vh, 0.3rem);
+            transition: box-shadow 0.3s;
+        }
+
+        .case-card:hover {
+            box-shadow: 0 4px 20px rgba(46, 158, 110, 0.08);
+        }
+
+        .case-card .case-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(0.8rem, 1.3vw, 1rem);
+            color: var(--text-primary);
+        }
+
+        .case-card .case-type {
+            font-family: var(--font-mono);
+            font-size: var(--tag-size);
+            color: var(--green-brand);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .case-card .case-stat {
+            font-size: clamp(1rem, 2vw, 1.6rem);
+            font-family: var(--font-display);
+            font-weight: 800;
+            color: var(--green-dark);
+        }
+
+        .case-card .case-desc {
+            font-size: var(--tag-size);
+            color: var(--text-secondary);
+        }
+
+        /* --- Pricing rows --- */
+        .pricing-row {
+            display: grid;
+            grid-template-columns: clamp(100px, 15vw, 180px) 1fr;
+            gap: clamp(0.5rem, 1.5vw, 1rem);
+            padding: clamp(0.35rem, 0.7vh, 0.6rem) 0;
+            border-bottom: 1px solid rgba(46, 158, 110, 0.08);
+        }
+
+        .pricing-row:last-child { border-bottom: none; }
+
+        .pricing-label {
+            font-family: var(--font-display);
+            font-weight: 600;
+            font-size: var(--small-size);
+            color: var(--text-primary);
+        }
+
+        .pricing-value {
+            font-size: var(--small-size);
+            color: var(--text-secondary);
+        }
+
+        .pricing-value strong {
+            color: var(--green-dark);
+        }
+
+        /* --- Team --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(0.5rem, 1.5vw, 1.25rem);
+        }
+
+        .team-member {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(46, 158, 110, 0.1);
+            border-radius: clamp(8px, 1vw, 14px);
+            padding: clamp(0.75rem, 2vw, 1.5rem);
+            text-align: center;
+        }
+
+        .team-member .avatar {
+            width: clamp(40px, 6vw, 64px);
+            height: clamp(40px, 6vw, 64px);
+            border-radius: 50%;
+            background: var(--green-light);
+            border: 2px solid var(--green-brand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto clamp(0.3rem, 0.8vh, 0.6rem);
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+            color: var(--green-dark);
+        }
+
+        .team-member h4 {
+            font-size: clamp(0.8rem, 1.3vw, 1rem);
+            margin-bottom: clamp(0.1rem, 0.2vh, 0.2rem);
+        }
+
+        .team-member .role {
+            font-size: var(--tag-size);
+            color: var(--green-brand);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .team-member p {
+            font-size: clamp(0.6rem, 0.9vw, 0.75rem);
+            color: var(--text-muted);
+            margin-top: clamp(0.2rem, 0.4vh, 0.35rem);
+        }
+
+        /* --- Checklist --- */
+        .checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(0.4rem, 1vh, 0.75rem);
+        }
+
+        .checklist li {
+            position: relative;
+            padding-left: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-size: var(--body-size);
+            color: var(--text-secondary);
+        }
+
+        .checklist li::before {
+            content: '☐';
+            position: absolute;
+            left: 0;
+            color: var(--green-brand);
+            font-size: var(--body-size);
+        }
+
+        /* --- Separator --- */
+        .sep {
+            width: clamp(30px, 5vw, 60px);
+            height: 3px;
+            background: var(--green-brand);
+            border: none;
+            margin: clamp(0.3rem, 0.8vh, 0.6rem) 0;
+            border-radius: 2px;
+        }
+
+        /* --- Slide footer --- */
+        .slide-footer {
+            position: absolute;
+            bottom: clamp(0.5rem, 1.5vh, 1.25rem);
+            left: var(--slide-padding);
+            right: var(--slide-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: clamp(0.5rem, 0.7vw, 0.65rem);
+            color: var(--text-muted);
+            z-index: 2;
+        }
+
+        /* --- Green top accent bar on light slides --- */
+        .slide--content::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-brand), var(--green-accent));
+            z-index: 2;
+        }
+
+        /* ===========================================
+           ANIMATIONS
+           =========================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal,
+        .slide.visible .reveal-scale {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .reveal:nth-child(1), .reveal-scale:nth-child(1) { transition-delay: 0.05s; }
+        .reveal:nth-child(2), .reveal-scale:nth-child(2) { transition-delay: 0.12s; }
+        .reveal:nth-child(3), .reveal-scale:nth-child(3) { transition-delay: 0.19s; }
+        .reveal:nth-child(4), .reveal-scale:nth-child(4) { transition-delay: 0.26s; }
+        .reveal:nth-child(5), .reveal-scale:nth-child(5) { transition-delay: 0.33s; }
+        .reveal:nth-child(6), .reveal-scale:nth-child(6) { transition-delay: 0.40s; }
+
+        /* Progress bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green-brand), var(--green-accent));
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Nav dots */
+        .nav-dots {
+            position: fixed;
+            right: clamp(0.5rem, 1.5vw, 1.25rem);
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(4px, 0.6vh, 8px);
+            z-index: 9998;
+        }
+
+        .nav-dot {
+            width: clamp(6px, 0.6vw, 8px);
+            height: clamp(6px, 0.6vw, 8px);
+            border-radius: 50%;
+            background: var(--text-muted);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            opacity: 0.4;
+        }
+
+        .nav-dot.active {
+            background: var(--green-brand);
+            opacity: 1;
+            transform: scale(1.4);
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS
+           =========================================== */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(0.75rem, 3vw, 2rem);
+                --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+                --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+                --h2-size: clamp(1rem, 3vw, 1.75rem);
+            }
+        }
+
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+                --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+                --title-size: clamp(1.1rem, 4vw, 2rem);
+                --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+            }
+            .nav-dots, .decorative, .slide-footer { display: none; }
+        }
+
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.4rem, 2vw, 1rem);
+                --title-size: clamp(1rem, 3.5vw, 1.5rem);
+                --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+                --body-size: clamp(0.65rem, 1vw, 0.85rem);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .two-col, .three-col, .team-grid, .eco-branches {
+                grid-template-columns: 1fr;
+            }
+            .timeline-phase {
+                grid-template-columns: clamp(60px, 20vw, 100px) 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); }
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+            html { scroll-behavior: auto; }
+        }
+
+        /* ===========================================
+           INLINE EDITING
+           =========================================== */
+        .edit-hotzone {
+            position: fixed; top: 0; left: 0;
+            width: 80px; height: 80px;
+            z-index: 10000; cursor: pointer;
+        }
+
+        .edit-toggle {
+            position: fixed;
+            top: clamp(0.5rem, 1.5vh, 1rem);
+            left: clamp(0.5rem, 1.5vw, 1rem);
+            background: var(--bg-secondary);
+            border: 1px solid rgba(46, 158, 110, 0.2);
+            color: var(--green-dark);
+            font-size: clamp(0.7rem, 1vw, 0.9rem);
+            padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.5rem, 1vw, 0.75rem);
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, background 0.3s ease;
+            z-index: 10001;
+            font-family: var(--font-mono);
+        }
+
+        .edit-toggle.show,
+        .edit-toggle.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .edit-toggle.active {
+            background: var(--green-brand);
+            color: white;
+        }
+
+        [contenteditable="true"] {
+            outline: 2px dashed rgba(46, 158, 110, 0.35);
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        .edit-toolbar {
+            position: fixed;
+            bottom: clamp(0.5rem, 1.5vh, 1rem);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            border: 1px solid rgba(46, 158, 110, 0.2);
+            border-radius: 12px;
+            padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.75rem, 1.5vw, 1.25rem);
+            display: none;
+            gap: clamp(0.5rem, 1vw, 1rem);
+            align-items: center;
+            z-index: 10001;
+            font-family: var(--font-mono);
+            font-size: var(--tag-size);
+            color: var(--text-secondary);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .edit-toolbar.show { display: flex; }
+
+        .edit-toolbar button {
+            background: var(--green-light);
+            border: 1px solid var(--green-brand);
+            color: var(--green-dark);
+            padding: clamp(0.2rem, 0.4vh, 0.35rem) clamp(0.5rem, 1vw, 0.75rem);
+            border-radius: 6px;
+            cursor: pointer;
+            font-family: var(--font-mono);
+            font-size: var(--tag-size);
+            transition: background 0.2s;
+        }
+
+        .edit-toolbar button:hover {
+            background: var(--green-brand);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation dots -->
+    <nav class="nav-dots" id="navDots"></nav>
+
+    <!-- Edit controls -->
+    <div class="edit-hotzone" id="editHotzone"></div>
+    <button class="edit-toggle" id="editToggle">Edit</button>
+    <div class="edit-toolbar" id="editToolbar">
+        <span>Editing mode</span>
+        <button onclick="editor.save()">Save (Ctrl+S)</button>
+        <button onclick="editor.exportFile()">Export HTML</button>
+    </div>
+
+
+    <!-- ============================================
+         SLIDE 1: TITLE (dark)
+         ============================================ -->
+    <section class="slide slide--title">
+        <div class="slide-content">
+            <img src="favicon.png" alt="Uni2Chain" class="logo-img reveal">
+            <span class="tag tag--green reveal">Propuesta de Servicios</span>
+            <h1 class="reveal editable">Growth4U <span class="green">×</span> Uni2Chain</h1>
+            <p class="subtitle reveal editable">Trust Engine para Uni2Chain / Uni2Ecosystem<br>Blockchain & Crypto Ecosystem</p>
+            <hr class="sep reveal">
+            <p class="reveal" style="font-family: var(--font-mono); font-size: var(--tag-size); color: var(--text-on-dark-muted);">
+                Marzo 2026 · Borrador v1 · Modelo Done For You
+            </p>
+        </div>
+        <div class="slide-footer" style="color: var(--text-on-dark-muted);">
+            <span>Growth4U · Confidencial</span>
+            <span>Cliente: Daniel Serrano</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 2: RESUMEN EJECUTIVO
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">01</span>
+                <h2 class="editable">Resumen Ejecutivo</h2>
+            </div>
+
+            <div class="highlight-box reveal">
+                <p class="editable"><strong>Uni2Chain</strong> es un ecosistema blockchain completo con sede en Dubái: blockchain propia (Layer 1, PoA, 151 nodos, EVM compatible), DEX, wallet, tokenización inmobiliaria, fan tokens, validadores y membresías. Operan con <strong>licencia DLT y licencia VARA</strong> — el mismo nivel regulatorio que Binance en Dubái.</p>
+            </div>
+
+            <div class="two-col reveal">
+                <div class="info-card">
+                    <h4 class="editable">El Problema</h4>
+                    <p class="editable">Infraestructura impresionante pero sin sistema de growth estructurado. Tras la crisis interna de febrero (salida del equipo dev), cierre de Yield Farming y pérdidas en pools de Solana, la confianza de la comunidad se ha erosionado.</p>
+                </div>
+                <div class="info-card">
+                    <h4 class="editable">Lo que Proponemos</h4>
+                    <p class="editable">Growth4U como partner estratégico Done For You durante un sprint de 90 días. Instalamos el Trust Engine para reconstruir confianza, activar captación estructurada y escalar a 100K-500K usuarios de wallet en el primer año.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box highlight-box--gold reveal">
+                <p class="editable"><strong>Ventaja competitiva:</strong> Muy pocos proyectos crypto tienen blockchain propia + DEX + wallet + tokenización + licencias regulatorias en Dubái. La infraestructura está. Lo que falta es el motor de crecimiento.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>01 · Resumen</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 3: ECOSISTEMA
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">02</span>
+                <h2 class="editable">El Ecosistema Uni2Chain</h2>
+            </div>
+
+            <div class="eco-hub reveal-scale">
+                <div class="eco-center">
+                    <h3>Uni2Chain</h3>
+                    <p>Blockchain L1 · PoA · 151 Nodos · EVM</p>
+                </div>
+
+                <div class="eco-branches">
+                    <div class="eco-node">
+                        <div class="node-icon">⛓</div>
+                        <h4>DEX</h4>
+                        <p>Exchange Descentralizado</p>
+                    </div>
+                    <div class="eco-node">
+                        <div class="node-icon">👛</div>
+                        <h4>Blonnet Wallet</h4>
+                        <p>Puerta de entrada masiva</p>
+                    </div>
+                    <div class="eco-node">
+                        <div class="node-icon">🏢</div>
+                        <h4>Tokenización</h4>
+                        <p>Inmobiliaria regulada</p>
+                    </div>
+                    <div class="eco-node">
+                        <div class="node-icon">🎓</div>
+                        <h4>CBC Business Club</h4>
+                        <p>Triple Libertad · Token CBC</p>
+                    </div>
+                    <div class="eco-node">
+                        <div class="node-icon">⚽</div>
+                        <h4>Fan Tokens</h4>
+                        <p>14-15 lanzados</p>
+                    </div>
+                    <div class="eco-node">
+                        <div class="node-icon">🔒</div>
+                        <h4>Validadores</h4>
+                        <p>150 desplegados</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-col reveal" style="margin-top: clamp(0.5rem, 1vh, 0.75rem);">
+                <div class="info-card" style="border-left: 3px solid var(--gold);">
+                    <h4 style="color: var(--gold);" class="editable">Eje Revenue</h4>
+                    <p class="editable">Membresía tokenización inmobiliaria, tokens inmobiliarios, fan tokens, validadores</p>
+                </div>
+                <div class="info-card" style="border-left: 3px solid var(--green-brand);">
+                    <h4 style="color: var(--green-dark);" class="editable">Eje Captación</h4>
+                    <p class="editable">Wallet como puerta de entrada: airdrops, referidos, gamificación</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>02 · Ecosistema</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 4: DIAGNÓSTICO
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">03</span>
+                <h2 class="editable">Diagnóstico — Estado Actual</h2>
+            </div>
+
+            <table class="data-table reveal">
+                <tr><td>Blockchain</td><td class="editable">~800K transacciones, ~4.000 wallets, live desde junio 2025</td></tr>
+                <tr><td>Comunidad</td><td class="editable">35.000+ registros, 5.500 inversores activos (YF), 400 VIP lifetime</td></tr>
+                <tr><td>Productos live</td><td class="editable">L1 PoA, DEX, Wallet (Blonnet), Tokenización inmobiliaria, CBC Business Club, Fan tokens (14-15), Validadores (150), Memecoins (2 sagas)</td></tr>
+                <tr><td>En desarrollo</td><td class="editable">Neobanco (Q3 2026), Plataforma derivados, Bots de trading, IA aplicada</td></tr>
+                <tr><td>Regulación</td><td class="editable">Licencia DLT (aprobada) + Licencia VARA (en proceso) — Dubái</td></tr>
+                <tr><td>Revenue histórico</td><td class="editable">85 validadores a $75K c/u · Wallet token sale $500K · 1.6M participaciones fundación</td></tr>
+                <tr><td>Captación</td><td class="editable">Boca a boca, referidos multi-nivel, congresos. Sin sistema estructurado</td></tr>
+            </table>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>03 · Diagnóstico</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 5: PROBLEMAS CRÍTICOS
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">03</span>
+                <h2 class="editable">Problemas Críticos</h2>
+            </div>
+
+            <div class="highlight-box highlight-box--red reveal">
+                <p class="editable"><strong>Crisis de confianza:</strong> Golpe interno en febrero (salida equipo dev), cierre de Yield Farming (promesas de retorno demasiado altas), pérdidas en pools de Solana. La comunidad necesita señales claras de solidez.</p>
+            </div>
+
+            <ul class="bullets reveal">
+                <li class="red editable"><strong>Dispersión de productos:</strong> 12+ productos en paralelo sin foco claro de captación</li>
+                <li class="red editable"><strong>Sin sistema de growth:</strong> Captación basada en comunidad orgánica y referidos sin estructura</li>
+                <li class="red editable"><strong>Equipo marketing desmantelado:</strong> ~10 personas salieron. Oportunidad de construir desde cero</li>
+                <li class="red editable"><strong>Múltiples marcas sin consolidar:</strong> Unidos Ecosystem, Movement, Chain, Finance, Blonnet, CBC — riesgo de dilución</li>
+                <li class="red editable"><strong>CBC Business Club infrautilizado:</strong> Academia 100+ horas, marketplace NFT, IA (Atenea), token CBC a $2 — activo potente sin estrategia de captación</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>03 · Problemas</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 6: UNIT ECONOMICS
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">04</span>
+                <h2 class="editable">Unit Economics — Hipótesis</h2>
+            </div>
+
+            <div class="tag tag--gold reveal" style="margin-bottom: clamp(0.3rem, 0.6vh, 0.5rem);">Estimaciones a validar con datos reales en semanas 1-3</div>
+
+            <table class="data-table reveal">
+                <tr><td>Membresía tokenización</td><td class="editable">Tickets de $1.000 y $2.500. Producto de revenue principal</td></tr>
+                <tr><td>Wallet captación</td><td class="editable">Airdrop $5 en tokens por descarga. Objetivo: 100K-500K usuarios año 1</td></tr>
+                <tr><td>CAC dispuesto</td><td class="editable">$3-10 por lead</td></tr>
+                <tr><td>Usuarios activos</td><td class="editable">Por confirmar (de 35K registros y 5.500 históricos de YF)</td></tr>
+                <tr><td>Palanca clave</td><td class="editable">Wallet → usuarios compran token nativo para mover airdrops → demanda orgánica</td></tr>
+            </table>
+
+            <div class="highlight-box reveal" style="margin-top: clamp(0.3rem, 0.8vh, 0.6rem);">
+                <p class="editable"><strong>Datos necesarios:</strong> Facturación mensual por producto · Usuarios activos HOY vs registrados · Inversión actual en marketing · Links a todos los productos</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>04 · Unit Economics</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 7: RECOMENDACIÓN ESTRATÉGICA (dark)
+         ============================================ -->
+    <section class="slide slide--section">
+        <div class="slide-content" style="align-items: flex-start;">
+            <span class="section-number reveal">05 · Estrategia</span>
+            <h2 class="reveal editable" style="max-width: 700px;">Revenue primero,<br>comunidad a escala después</h2>
+            <hr class="sep reveal">
+            <p class="reveal editable" style="max-width: 600px; font-size: var(--body-size);">Escalar comunidad antes de tener un motor de ingresos predecible agota la caja. La wallet con airdrops es brillante, pero necesita cash flow para financiarlo.</p>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>05 · Estrategia</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 8: FOCO
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">05</span>
+                <h2 class="editable">Foco Recomendado</h2>
+            </div>
+
+            <div class="info-card reveal" style="border-left: 3px solid var(--gold); margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);">
+                <div style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem); margin-bottom: clamp(0.15rem, 0.3vh, 0.25rem);">
+                    <span class="tag tag--gold">Prioridad 1</span>
+                    <h4 class="editable">Membresía de Tokenización Inmobiliaria</h4>
+                </div>
+                <p class="editable">Motor de revenue. Producto tangible, regulado, con valor real. Diferenciado frente a la volatilidad crypto.</p>
+            </div>
+
+            <div class="info-card reveal" style="border-left: 3px solid var(--green-brand); margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);">
+                <div style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem); margin-bottom: clamp(0.15rem, 0.3vh, 0.25rem);">
+                    <span class="tag tag--green">Prioridad 2</span>
+                    <h4 class="editable">Wallet (Blonnet) — Captación Masiva</h4>
+                </div>
+                <p class="editable">Airdrops, gamificación, referidos. Pero sobre la base de credibilidad que construye el Trust Engine.</p>
+            </div>
+
+            <div class="highlight-box reveal">
+                <p class="editable"><strong>Los demás productos</strong> son extensiones del ecosistema. No dispersar esfuerzos hasta que las dos verticales principales estén traccionando.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>05 · Foco</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 9: TRUST ENGINE (dark)
+         ============================================ -->
+    <section class="slide slide--section">
+        <div class="slide-content" style="align-items: flex-start;">
+            <span class="section-number reveal">06 · Propuesta</span>
+            <h2 class="reveal editable" style="max-width: 800px;">Trust Engine<br><span style="color: var(--green-accent);">para Crypto</span></h2>
+            <hr class="sep reveal">
+            <p class="reveal editable" style="max-width: 650px; font-size: var(--body-size);">El problema real no es de producto — es de confianza y captación. La comunidad necesita señales claras de que Uni2Chain es sólido y va en serio. El Trust Engine resuelve exactamente eso.</p>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>06 · Trust Engine</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 10: ROADMAP 90 DÍAS
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">06</span>
+                <h2 class="editable">Roadmap: Sprint 90 Días</h2>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-phase reveal">
+                    <div class="phase-label">
+                        <div class="phase-name">Foundation</div>
+                        <div class="phase-weeks">Sem. 1-3</div>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Diagnóstico & Estrategia</h4>
+                        <p class="editable">Auditoría ecosistema · Análisis competitivo (Solana, Tron, BSC) · Definición ICP por vertical · Posicionamiento "blockchain regulada con casos de uso reales" · Arquitectura de funnels · Consolidación de marcas</p>
+                    </div>
+                </div>
+
+                <div class="timeline-phase reveal">
+                    <div class="phase-label">
+                        <div class="phase-name">Trust Engine</div>
+                        <div class="phase-weeks">Sem. 4-8</div>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Reconstruir Confianza</h4>
+                        <p class="editable">Presencia en crypto media y comparadores · SEO/GEO mercados hispanos · Influencers crypto de nicho · Comunidades Telegram y Reddit · Reviews y testimonios · Personal branding Daniel en LinkedIn/X · PR en CoinTelegraph, BeInCrypto</p>
+                    </div>
+                </div>
+
+                <div class="timeline-phase reveal">
+                    <div class="phase-label">
+                        <div class="phase-name">Activación</div>
+                        <div class="phase-weeks">Sem. 9-12</div>
+                    </div>
+                    <div class="phase-content">
+                        <h4>Captación Estructurada</h4>
+                        <p class="editable">Funnel membresía tokenización operativo · Estrategia lanzamiento wallet con airdrops · Sistema referidos optimizado (anti-fraude) · Primeras campañas paid · Dashboard métricas y atribución</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>06 · Roadmap</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 11: ASSETS
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">06</span>
+                <h2 class="editable">Assets Clave del Ecosistema</h2>
+            </div>
+
+            <div class="two-col">
+                <div class="info-card reveal">
+                    <h4 class="editable">Uni2Chain.org</h4>
+                    <p class="editable">Web principal. Posicionamiento técnico (PoA, EVM, 151 nodos). Base para SEO/GEO en búsquedas de blockchain.</p>
+                </div>
+                <div class="info-card reveal">
+                    <h4 class="editable">CBC Business Club</h4>
+                    <p class="editable">Producto estrella de comunidad. Academia gratuita, eventos, token CBC. Puerta de entrada accesible para audiencia no-técnica.</p>
+                </div>
+                <div class="info-card reveal">
+                    <h4 class="editable">Congreso Internacional</h4>
+                    <p class="editable">Formato validado: 100+ expertos, 5 áreas. Potencial de repetir como estrategia de captación masiva + PR.</p>
+                </div>
+                <div class="info-card reveal">
+                    <h4 class="editable">Licencias DLT + VARA</h4>
+                    <p class="editable">Diferenciador regulatorio vs competencia. Clave para messaging de confianza. Mismo nivel que Binance en Dubái.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>06 · Assets</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 12: TRUST ENGINE EN ACCIÓN
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">06</span>
+                <h2 class="editable">Trust Engine en Acción</h2>
+            </div>
+
+            <p class="reveal editable" style="margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem);">Cuando alguien investiga Uni2Chain — en Google, en X, en crypto media, en CoinGecko — debe encontrar <strong style="color: var(--green-dark);">señales coherentes de confianza en todos lados</strong>:</p>
+
+            <ul class="bullets reveal">
+                <li class="editable"><strong>Reviews y testimonios</strong> reales de la comunidad</li>
+                <li class="editable"><strong>Presencia en medios crypto</strong> relevantes (CoinTelegraph, BeInCrypto)</li>
+                <li class="editable"><strong>Influencers crypto de nicho</strong> — analistas on-chain, educadores DeFi, reviewers de L1</li>
+                <li class="editable"><strong>Comunidades activas</strong> en Telegram, Reddit y foros crypto</li>
+                <li class="editable"><strong>SEO/GEO dominando búsquedas</strong> de blockchain regulada en mercados hispanos</li>
+                <li class="editable"><strong>Personal branding Daniel</strong> como referente en LinkedIn y X</li>
+            </ul>
+
+            <div class="highlight-box reveal">
+                <p class="editable">Cuando todo eso está conectado, la <strong>conversión sube</strong> y el <strong>coste de adquisición baja</strong>.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>06 · Trust Engine</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 13: MODELO DE TRABAJO
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">07</span>
+                <h2 class="editable">Modelo de Trabajo</h2>
+            </div>
+
+            <div class="tag tag--green reveal" style="margin-bottom: clamp(0.3rem, 0.6vh, 0.5rem);">Done For You — Partners, no proveedores</div>
+
+            <table class="data-table reveal">
+                <tr><td>Estrategia & GTM</td><td class="editable">Diagnóstico, posicionamiento, segmentación, arquitectura de funnels</td></tr>
+                <tr><td>Trust Engine</td><td class="editable">Reviews, PR crypto, SEO/GEO hispano, influencers de nicho, comparadores</td></tr>
+                <tr><td>Comunidades</td><td class="editable">Telegram, Reddit, foros crypto. Estrategia de contenido y engagement</td></tr>
+                <tr><td>Personal Branding</td><td class="editable">Daniel Serrano en LinkedIn y X como referente blockchain hispanohablante</td></tr>
+                <tr><td>Captación</td><td class="editable">Funnels membresía, estrategia wallet/airdrops, referidos optimizados</td></tr>
+                <tr><td>LATAM</td><td class="editable">Agencias locales en mercados clave para ejecución sobre el terreno</td></tr>
+                <tr><td>Reporting</td><td class="editable">Dashboards, tracking por canal, iteración semanal con datos reales</td></tr>
+            </table>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>07 · Modelo</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 14: CADENCIA
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">07</span>
+                <h2 class="editable">Cadencia de Trabajo</h2>
+            </div>
+
+            <div class="two-col">
+                <div>
+                    <div class="info-card reveal" style="margin-bottom: clamp(0.4rem, 0.8vh, 0.65rem);">
+                        <h4 class="editable">Reunión semanal</h4>
+                        <p class="editable">Revisión y planificación (1h)</p>
+                    </div>
+                    <div class="info-card reveal" style="margin-bottom: clamp(0.4rem, 0.8vh, 0.65rem);">
+                        <h4 class="editable">Canal directo</h4>
+                        <p class="editable">Comunicación vía Slack o Telegram</p>
+                    </div>
+                    <div class="info-card reveal" style="margin-bottom: clamp(0.4rem, 0.8vh, 0.65rem);">
+                        <h4 class="editable">Reportes quincenales</h4>
+                        <p class="editable">KPIs y avance de cada fase</p>
+                    </div>
+                    <div class="info-card reveal">
+                        <h4 class="editable">Revisión mensual</h4>
+                        <p class="editable">Estrategia y ajustes de rumbo</p>
+                    </div>
+                </div>
+
+                <div class="highlight-box reveal" style="align-self: center;">
+                    <p class="editable" style="font-size: var(--tag-size); margin-bottom: clamp(0.2rem, 0.4vh, 0.35rem);"><strong>Nota legal</strong></p>
+                    <p class="editable" style="font-size: clamp(0.55rem, 0.8vw, 0.7rem);">Growth4U actúa exclusivamente como partner estratégico de growth y marketing. No asumimos responsabilidad sobre operaciones, productos financieros, decisiones de inversión, gestión de tokens ni cumplimiento regulatorio del ecosistema Uni2Chain.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>07 · Cadencia</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 15: INVERSIÓN (dark)
+         ============================================ -->
+    <section class="slide slide--section">
+        <div class="slide-content" style="align-items: flex-start;">
+            <span class="section-number reveal">08 · Inversión</span>
+            <h2 class="reveal editable" style="max-width: 700px;">Estructura de<br><span style="color: var(--gold);">Inversión</span></h2>
+            <hr class="sep reveal" style="background: var(--gold);"></hr>
+            <p class="reveal editable" style="max-width: 600px; font-size: var(--body-size);">Modelo híbrido alineado con los intereses de ambas partes. Adaptado al contexto actual post-crisis de Uni2Chain.</p>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>08 · Inversión</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 16: PRICING
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">08</span>
+                <h2 class="editable">Pricing</h2>
+            </div>
+
+            <div class="pricing-row reveal">
+                <span class="pricing-label">Sprint inicial</span>
+                <span class="pricing-value editable"><strong>90 días</strong> — revisable y renegociable tras el sprint</span>
+            </div>
+            <div class="pricing-row reveal">
+                <span class="pricing-label">Fee mensual</span>
+                <span class="pricing-value editable"><strong>7.500 €/mes</strong> — refleja la complejidad del ecosistema (blockchain, múltiples tokens, regulación internacional)</span>
+            </div>
+            <div class="pricing-row reveal">
+                <span class="pricing-label">Compromiso</span>
+                <span class="pricing-value editable"><strong>6 meses mínimo</strong> — necesarios para construir confianza, ejecutar las 3 fases y medir resultados</span>
+            </div>
+            <div class="pricing-row reveal">
+                <span class="pricing-label">Descuento</span>
+                <span class="pricing-value editable"><strong>15-20% descuento</strong> si se abona el período completo de 6 meses por adelantado</span>
+            </div>
+            <div class="pricing-row reveal">
+                <span class="pricing-label">Success fee</span>
+                <span class="pricing-value editable">Vinculado a resultados medibles (usuarios wallet, membresías, revenue). Estructura a definir conjuntamente</span>
+            </div>
+            <div class="pricing-row reveal">
+                <span class="pricing-label">Flexibilidad</span>
+                <span class="pricing-value editable">Abiertos a componente parcial en tokens Uni2Chain, sujeto a acuerdo de valoración</span>
+            </div>
+
+            <div class="highlight-box highlight-box--gold reveal" style="margin-top: clamp(0.3rem, 0.8vh, 0.6rem);">
+                <p class="editable"><strong>Estructura híbrida:</strong> Fee base + success fees + visión de partnership a largo plazo. Posibilidad de participación en tokens/equity tras validar el sprint.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>08 · Pricing</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 17: PARA CERRAR
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">08</span>
+                <h2 class="editable">Para Cerrar</h2>
+            </div>
+
+            <ul class="checklist reveal">
+                <li class="editable">Confirmación de estructura de pago preferida (euros, mixto con tokens, adelanto)</li>
+                <li class="editable">Métricas de éxito que Daniel considera razonables para el success fee</li>
+                <li class="editable">Timeline de decisión y nº de socios involucrados</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>08 · Cierre</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 18: POR QUÉ GROWTH4U
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">09</span>
+                <h2 class="editable">Por qué Growth4U</h2>
+            </div>
+
+            <div class="two-col">
+                <div>
+                    <div class="case-card reveal" style="margin-bottom: clamp(0.4rem, 0.8vh, 0.6rem);">
+                        <span class="case-type">Crypto / Exchange</span>
+                        <span class="case-name editable">Bit2Me</span>
+                        <span class="case-stat">-70% CAC</span>
+                        <span class="case-desc editable">2× activación, 2× LTV. Trust Engine en sector de baja confianza</span>
+                    </div>
+                    <div class="case-card reveal">
+                        <span class="case-type">B2B Payments</span>
+                        <span class="case-name editable">GoCardless</span>
+                        <span class="case-stat">€0 → €10K MRR</span>
+                        <span class="case-desc editable">España y Portugal desde cero en 6 meses</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="case-card reveal" style="margin-bottom: clamp(0.4rem, 0.8vh, 0.6rem);">
+                        <span class="case-type">Neobank</span>
+                        <span class="case-name editable">Bnext</span>
+                        <span class="case-stat">0 → 500K usuarios</span>
+                        <span class="case-desc editable">30 meses · CAC €12.50 (competidores: €30-50)</span>
+                    </div>
+                    <div class="case-card reveal">
+                        <span class="case-type">Inversión</span>
+                        <span class="case-name editable">Múltiplo</span>
+                        <span class="case-stat">150 leads → 20 clientes</span>
+                        <span class="case-desc editable">En menos de 2 meses</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight-box reveal" style="margin-top: clamp(0.3rem, 0.8vh, 0.6rem);">
+                <p class="editable"><strong>Conexión directa:</strong> Alfonso trabajó en Bit2Me, conoce a Leif Ferreira desde 2014. Entendemos crypto desde dentro — los ciclos, la regulación, la comunidad, la confianza.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>09 · Track Record</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 19: COSTE DE NO ACTUAR
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">10</span>
+                <h2 class="editable">Coste de No Actuar</h2>
+            </div>
+
+            <div class="tag tag--red reveal" style="margin-bottom: clamp(0.3rem, 0.6vh, 0.5rem);">Cada semana sin sistema de growth, Uni2Chain pierde terreno</div>
+
+            <ul class="bullets reveal">
+                <li class="red editable"><strong>Confianza en erosión:</strong> Sin señales activas de solidez, la comunidad sigue perdiendo fe tras la crisis de febrero</li>
+                <li class="red editable"><strong>Wallet sin tracción:</strong> El MVP se lanza esta semana pero sin estrategia de captación, los airdrops no generarán masa crítica</li>
+                <li class="red editable"><strong>Competencia avanza:</strong> Solana, Tron, BSC, Avalanche capturan comunidad y developers cada día</li>
+                <li class="red editable"><strong>Revenue estancado:</strong> La membresía de tokenización tiene potencial pero sin funnel profesional, depende del boca a boca</li>
+                <li class="red editable"><strong>Marcas diluidas:</strong> Múltiples cuentas sin estrategia unificada dispersan esfuerzos y confunden al mercado</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>10 · Urgencia</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 20: PRÓXIMOS PASOS
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">11</span>
+                <h2 class="editable">Próximos Pasos</h2>
+            </div>
+
+            <ul class="checklist reveal">
+                <li class="editable">Daniel envía links a todos los productos por email</li>
+                <li class="editable">Alfonso prepara propuesta final con pricing</li>
+                <li class="editable">Confirmar presupuesto disponible y estructura de success fees</li>
+                <li class="editable">Confirmar quién decide (Daniel + socios)</li>
+                <li class="editable">Firma de acuerdo y kick-off sprint 90 días</li>
+            </ul>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>11 · Next Steps</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 21: EQUIPO
+         ============================================ -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">12</span>
+                <h2 class="editable">Equipo Growth4U</h2>
+            </div>
+
+            <div class="team-grid reveal">
+                <div class="team-member">
+                    <div class="avatar">AS</div>
+                    <h4 class="editable">Alfonso Sainz de Baranda</h4>
+                    <div class="role">Lead Estratégico</div>
+                    <p class="editable">+15 años escalando fintechs. Bnext, Bit2Me, GoCardless, Monzo</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">MF</div>
+                    <h4 class="editable">Martin Fila</h4>
+                    <div class="role">Growth Tech & IA</div>
+                    <p class="editable">Atribución, arquitectura de datos, automatización con IA</p>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">PS</div>
+                    <h4 class="editable">Philippe Sainthubert</h4>
+                    <div class="role">Growth Manager</div>
+                    <p class="editable">Ejecución day-to-day, coordinación, reporting semanal</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Growth4U × Uni2Chain</span>
+            <span>12 · Equipo</span>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         SLIDE 22: CIERRE (dark)
+         ============================================ -->
+    <section class="slide slide--title">
+        <div class="slide-content">
+            <img src="favicon.png" alt="Uni2Chain" class="logo-img reveal" style="width: clamp(40px, 6vw, 60px);">
+            <h1 class="reveal editable" style="font-size: clamp(1.8rem, 5vw, 3.5rem);">Let's build trust.<br><span class="green">Let's build growth.</span></h1>
+            <hr class="sep reveal">
+            <p class="reveal editable" style="color: var(--text-on-dark-muted); font-size: var(--body-size);">alfonso@growth4u.io · growth4u.io</p>
+            <div class="reveal" style="margin-top: clamp(0.5rem, 1.5vh, 1rem);">
+                <span class="tag tag--green">Growth4U × Uni2Chain</span>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+       JAVASCRIPT
+       ============================================ -->
+    <script>
+        class SlidePresentation {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupTouchNav();
+                this.setupProgressBar();
+                this.setupNavDots();
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            const index = Array.from(this.slides).indexOf(entry.target);
+                            if (index !== -1) {
+                                this.currentSlide = index;
+                                this.updateNavDots();
+                                this.updateProgressBar();
+                            }
+                        }
+                    });
+                }, { threshold: 0.4 });
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.target.getAttribute('contenteditable') === 'true') return;
+                    switch(e.key) {
+                        case 'ArrowDown': case 'ArrowRight': case ' ': case 'PageDown':
+                            e.preventDefault(); this.goToSlide(this.currentSlide + 1); break;
+                        case 'ArrowUp': case 'ArrowLeft': case 'PageUp':
+                            e.preventDefault(); this.goToSlide(this.currentSlide - 1); break;
+                        case 'Home': e.preventDefault(); this.goToSlide(0); break;
+                        case 'End': e.preventDefault(); this.goToSlide(this.slides.length - 1); break;
+                    }
+                });
+            }
+
+            setupTouchNav() {
+                let startY = 0, startX = 0;
+                document.addEventListener('touchstart', (e) => {
+                    startY = e.touches[0].clientY;
+                    startX = e.touches[0].clientX;
+                }, { passive: true });
+                document.addEventListener('touchend', (e) => {
+                    const dY = startY - e.changedTouches[0].clientY;
+                    const dX = startX - e.changedTouches[0].clientX;
+                    if (Math.abs(dY) > Math.abs(dX) && Math.abs(dY) > 50) {
+                        this.goToSlide(this.currentSlide + (dY > 0 ? 1 : -1));
+                    }
+                }, { passive: true });
+            }
+
+            setupProgressBar() {
+                this.progressBar = document.getElementById('progressBar');
+                this.updateProgressBar();
+            }
+
+            updateProgressBar() {
+                if (!this.progressBar) return;
+                this.progressBar.style.width = ((this.currentSlide + 1) / this.slides.length * 100) + '%';
+            }
+
+            setupNavDots() {
+                const container = document.getElementById('navDots');
+                if (!container) return;
+                this.slides.forEach((_, i) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    container.appendChild(dot);
+                });
+            }
+
+            updateNavDots() {
+                document.querySelectorAll('.nav-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === this.currentSlide);
+                });
+            }
+
+            goToSlide(index) {
+                if (index < 0 || index >= this.slides.length) return;
+                this.currentSlide = index;
+                this.slides[index].scrollIntoView({ behavior: 'smooth' });
+                this.updateNavDots();
+                this.updateProgressBar();
+            }
+        }
+
+        class InlineEditor {
+            constructor() {
+                this.isActive = false;
+                this.storageKey = 'growth4u-uni2chain-edits';
+                this.editables = document.querySelectorAll('.editable');
+                this.loadSavedEdits();
+            }
+
+            toggleEditMode() {
+                this.isActive = !this.isActive;
+                document.getElementById('editToggle').classList.toggle('active', this.isActive);
+                document.getElementById('editToolbar').classList.toggle('show', this.isActive);
+                this.editables.forEach(el => {
+                    el.setAttribute('contenteditable', this.isActive ? 'true' : 'false');
+                });
+                if (!this.isActive) this.save();
+            }
+
+            save() {
+                const edits = {};
+                this.editables.forEach((el, i) => { edits[i] = el.innerHTML; });
+                localStorage.setItem(this.storageKey, JSON.stringify(edits));
+            }
+
+            loadSavedEdits() {
+                const saved = localStorage.getItem(this.storageKey);
+                if (!saved) return;
+                try {
+                    const edits = JSON.parse(saved);
+                    this.editables.forEach((el, i) => {
+                        if (edits[i] !== undefined) el.innerHTML = edits[i];
+                    });
+                } catch(e) { console.warn('Could not load saved edits:', e); }
+            }
+
+            exportFile() {
+                this.save();
+                const blob = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'growth4u-uni2chain-proposal.html';
+                a.click();
+                URL.revokeObjectURL(a.href);
+            }
+        }
+
+        const presentation = new SlidePresentation();
+        const editor = new InlineEditor();
+
+        /* Hotzone hover with 400ms grace period */
+        const hotzone = document.getElementById('editHotzone');
+        const editToggle = document.getElementById('editToggle');
+        let hideTimeout = null;
+
+        hotzone.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); editToggle.classList.add('show'); });
+        hotzone.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!editor.isActive) editToggle.classList.remove('show'); }, 400); });
+        editToggle.addEventListener('mouseenter', () => { clearTimeout(hideTimeout); });
+        editToggle.addEventListener('mouseleave', () => { hideTimeout = setTimeout(() => { if (!editor.isActive) editToggle.classList.remove('show'); }, 400); });
+
+        editToggle.addEventListener('click', () => editor.toggleEditMode());
+        hotzone.addEventListener('click', () => editor.toggleEditMode());
+
+        document.addEventListener('keydown', (e) => {
+            if ((e.key === 'e' || e.key === 'E') && !e.target.getAttribute('contenteditable')) editor.toggleEditMode();
+            if ((e.ctrlKey || e.metaKey) && e.key === 's') { e.preventDefault(); editor.save(); }
+        });
+    </script>
+</body>
+</html>
