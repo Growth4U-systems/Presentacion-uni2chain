@@ -49,16 +49,16 @@
             --font-body: 'DM Sans', sans-serif;
             --font-mono: 'Space Mono', monospace;
 
-            --title-size: clamp(1.8rem, 5vw, 4rem);
-            --h2-size: clamp(1.3rem, 3.5vw, 2.5rem);
-            --h3-size: clamp(1rem, 2.5vw, 1.5rem);
-            --body-size: clamp(0.75rem, 1.4vw, 1.05rem);
-            --small-size: clamp(0.65rem, 1vw, 0.85rem);
-            --tag-size: clamp(0.55rem, 0.8vw, 0.75rem);
+            --title-size: clamp(2.2rem, 5.5vw, 4.5rem);
+            --h2-size: clamp(1.6rem, 4vw, 3rem);
+            --h3-size: clamp(1.2rem, 2.8vw, 1.8rem);
+            --body-size: clamp(0.95rem, 1.6vw, 1.2rem);
+            --small-size: clamp(0.85rem, 1.2vw, 1rem);
+            --tag-size: clamp(0.7rem, 0.9vw, 0.85rem);
 
-            --slide-padding: clamp(1.5rem, 4vw, 5rem);
-            --content-gap: clamp(0.75rem, 2vw, 2rem);
-            --element-gap: clamp(0.25rem, 1vw, 1rem);
+            --slide-padding: clamp(2rem, 5vw, 6rem);
+            --content-gap: clamp(1rem, 2.5vw, 2.5rem);
+            --element-gap: clamp(0.4rem, 1.2vw, 1.25rem);
 
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
             --duration-normal: 0.7s;
@@ -110,16 +110,16 @@
         .slide--title { background: var(--bg-dark-section); justify-content: center; align-items: center; text-align: center; }
         .slide--title::before { background-image: linear-gradient(rgba(46, 158, 110, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(46, 158, 110, 0.06) 1px, transparent 1px); background-size: 60px 60px; }
         .slide--title .slide-content { align-items: center; gap: clamp(0.75rem, 2vh, 1.5rem); }
-        .slide--title h1 { color: var(--text-on-dark); font-weight: 800; font-size: clamp(2rem, 5.5vw, 4.5rem); }
+        .slide--title h1 { color: var(--text-on-dark); font-weight: 800; font-size: clamp(2.4rem, 6vw, 5rem); }
         .slide--title h1 .green { color: var(--green-accent); }
-        .slide--title .subtitle { font-size: clamp(0.85rem, 1.8vw, 1.2rem); color: var(--text-on-dark-muted); max-width: 600px; }
+        .slide--title .subtitle { font-size: clamp(1rem, 2vw, 1.4rem); color: var(--text-on-dark-muted); max-width: 700px; }
         .slide--title .logo-img { width: clamp(50px, 8vw, 80px); height: auto; margin-bottom: clamp(0.3rem, 0.8vh, 0.6rem); }
 
         /* Section header (dark) */
         .slide--section { background: var(--bg-dark-section); }
         .slide--section::before { background-image: radial-gradient(circle at 30% 70%, rgba(46, 158, 110, 0.1) 0%, transparent 50%), linear-gradient(rgba(46, 158, 110, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(46, 158, 110, 0.05) 1px, transparent 1px); background-size: 100% 100%, 60px 60px, 60px 60px; }
         .slide--section .section-number { font-family: var(--font-mono); font-size: clamp(0.7rem, 1.2vw, 1rem); color: var(--green-accent); letter-spacing: 0.15em; text-transform: uppercase; }
-        .slide--section h2 { font-size: clamp(1.8rem, 5vw, 3.5rem); font-weight: 800; color: var(--text-on-dark); margin-top: clamp(0.3rem, 1vh, 0.75rem); }
+        .slide--section h2 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 800; color: var(--text-on-dark); margin-top: clamp(0.5rem, 1.5vh, 1rem); }
         .slide--section p { color: var(--text-on-dark-muted); }
         .slide--section .slide-footer { color: var(--text-on-dark-muted); }
 
@@ -138,14 +138,14 @@
         .slide--section .tag--green, .slide--title .tag--green { background: rgba(46, 158, 110, 0.15); color: var(--green-accent); border-color: rgba(60, 179, 113, 0.3); }
 
         /* Cards */
-        .info-card { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 16px); padding: clamp(0.75rem, 2vw, 1.5rem); transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .info-card { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(10px, 1.2vw, 18px); padding: clamp(1rem, 2.5vw, 2rem); transition: border-color 0.3s ease, box-shadow 0.3s ease; }
         .info-card:hover { border-color: rgba(46, 158, 110, 0.25); box-shadow: 0 4px 20px rgba(46, 158, 110, 0.06); }
-        .info-card h4 { font-size: clamp(0.85rem, 1.5vw, 1.1rem); color: var(--text-primary); margin-bottom: clamp(0.25rem, 0.5vh, 0.5rem); }
-        .info-card p { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.45; }
+        .info-card h4 { font-size: clamp(1rem, 1.6vw, 1.25rem); color: var(--text-primary); margin-bottom: clamp(0.3rem, 0.6vh, 0.6rem); }
+        .info-card p { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.5; }
 
         /* Highlight box */
-        .highlight-box { background: var(--green-lighter); border-left: 3px solid var(--green-brand); border-radius: 0 clamp(6px, 0.8vw, 12px) clamp(6px, 0.8vw, 12px) 0; padding: clamp(0.6rem, 1.5vw, 1.25rem); }
-        .highlight-box p { color: var(--text-primary); font-size: var(--small-size); }
+        .highlight-box { background: var(--green-lighter); border-left: 4px solid var(--green-brand); border-radius: 0 clamp(8px, 1vw, 14px) clamp(8px, 1vw, 14px) 0; padding: clamp(0.9rem, 2vw, 1.5rem); }
+        .highlight-box p { color: var(--text-primary); font-size: var(--small-size); line-height: 1.55; }
         .highlight-box strong { color: var(--green-deeper); }
         .highlight-box--gold { background: var(--gold-light); border-left-color: var(--gold); }
         .highlight-box--gold strong { color: var(--gold); }
@@ -154,9 +154,9 @@
 
         /* Tables */
         .data-table { width: 100%; border-collapse: collapse; font-size: var(--small-size); }
-        .data-table th { font-family: var(--font-display); font-weight: 600; font-size: var(--small-size); color: var(--green-dark); text-align: left; padding: clamp(0.3rem, 0.8vh, 0.6rem) clamp(0.4rem, 1vw, 0.75rem); border-bottom: 2px solid var(--green-brand); letter-spacing: 0.05em; text-transform: uppercase; }
-        .data-table td { padding: clamp(0.3rem, 0.7vh, 0.55rem) clamp(0.4rem, 1vw, 0.75rem); border-bottom: 1px solid rgba(46, 158, 110, 0.08); color: var(--text-secondary); vertical-align: top; }
-        .data-table td:first-child { color: var(--text-primary); font-weight: 500; white-space: nowrap; }
+        .data-table th { font-family: var(--font-display); font-weight: 600; font-size: var(--small-size); color: var(--green-dark); text-align: left; padding: clamp(0.5rem, 1vh, 0.8rem) clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--green-brand); letter-spacing: 0.05em; text-transform: uppercase; }
+        .data-table td { padding: clamp(0.5rem, 0.9vh, 0.75rem) clamp(0.6rem, 1.2vw, 1rem); border-bottom: 1px solid rgba(46, 158, 110, 0.08); color: var(--text-secondary); vertical-align: top; line-height: 1.5; }
+        .data-table td:first-child { color: var(--text-primary); font-weight: 600; white-space: nowrap; }
         .data-table tr:last-child td { border-bottom: none; }
 
         /* Layouts */
@@ -164,23 +164,23 @@
         .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: clamp(0.5rem, 1.5vw, 1.25rem); }
 
         /* Bullets */
-        .bullets { list-style: none; display: flex; flex-direction: column; gap: clamp(0.3rem, 0.8vh, 0.65rem); }
-        .bullets li { position: relative; padding-left: clamp(1rem, 2vw, 1.5rem); font-size: var(--small-size); color: var(--text-secondary); line-height: 1.5; }
-        .bullets li::before { content: ''; position: absolute; left: 0; top: clamp(0.35rem, 0.7vh, 0.5rem); width: clamp(4px, 0.5vw, 6px); height: clamp(4px, 0.5vw, 6px); border-radius: 50%; background: var(--green-brand); }
+        .bullets { list-style: none; display: flex; flex-direction: column; gap: clamp(0.4rem, 1vh, 0.75rem); }
+        .bullets li { position: relative; padding-left: clamp(1.2rem, 2.2vw, 1.6rem); font-size: var(--body-size); color: var(--text-secondary); line-height: 1.55; }
+        .bullets li::before { content: ''; position: absolute; left: 0; top: clamp(0.4rem, 0.8vh, 0.55rem); width: clamp(5px, 0.6vw, 7px); height: clamp(5px, 0.6vw, 7px); border-radius: 50%; background: var(--green-brand); }
         .bullets li.red::before { background: var(--red-alert); }
         .bullets li strong { color: var(--text-primary); }
 
         /* Ecosystem diagram */
         .eco-hub { display: flex; flex-direction: column; align-items: center; gap: clamp(0.5rem, 1.5vh, 1.25rem); }
         .eco-center { background: var(--green-light); border: 2px solid var(--green-brand); border-radius: clamp(8px, 1vw, 16px); padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem); text-align: center; box-shadow: 0 4px 24px rgba(46, 158, 110, 0.12); }
-        .eco-center h3 { color: var(--green-dark); font-size: clamp(0.9rem, 2vw, 1.4rem); }
+        .eco-center h3 { color: var(--green-dark); font-size: clamp(1.1rem, 2.2vw, 1.6rem); }
         .eco-center p { font-size: var(--tag-size); color: var(--text-muted); }
         .eco-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.4rem, 1vw, 0.75rem); width: 100%; max-width: min(90vw, 900px); }
         .eco-node { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.12); border-radius: clamp(6px, 0.8vw, 12px); padding: clamp(0.4rem, 1vw, 0.75rem); text-align: center; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
         .eco-node:hover { border-color: var(--green-brand); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(46, 158, 110, 0.1); }
-        .eco-node .node-icon { font-size: clamp(1rem, 2vw, 1.5rem); margin-bottom: clamp(0.15rem, 0.3vh, 0.3rem); }
-        .eco-node h4 { font-size: clamp(0.65rem, 1.1vw, 0.85rem); color: var(--text-primary); }
-        .eco-node p { font-size: clamp(0.55rem, 0.8vw, 0.7rem); color: var(--text-muted); }
+        .eco-node .node-icon { font-size: clamp(1.2rem, 2.2vw, 1.8rem); margin-bottom: clamp(0.2rem, 0.4vh, 0.4rem); }
+        .eco-node h4 { font-size: clamp(0.9rem, 1.4vw, 1.1rem); color: var(--text-primary); }
+        .eco-node p { font-size: clamp(0.75rem, 1vw, 0.9rem); color: var(--text-muted); }
 
         /* Timeline */
         .timeline { display: flex; flex-direction: column; gap: clamp(0.5rem, 1.2vh, 0.9rem); }
@@ -188,19 +188,19 @@
         .phase-label { text-align: right; padding-right: clamp(0.5rem, 1vw, 1rem); border-right: 2px solid var(--green-brand); }
         .phase-label .phase-name { font-family: var(--font-display); font-weight: 700; font-size: var(--small-size); color: var(--green-dark); }
         .phase-label .phase-weeks { font-family: var(--font-mono); font-size: var(--tag-size); color: var(--text-muted); }
-        .phase-content h4 { font-size: var(--small-size); color: var(--text-primary); margin-bottom: clamp(0.15rem, 0.3vh, 0.25rem); }
-        .phase-content p { font-size: clamp(0.6rem, 0.9vw, 0.78rem); color: var(--text-secondary); line-height: 1.45; }
+        .phase-content h4 { font-size: clamp(0.95rem, 1.3vw, 1.1rem); color: var(--text-primary); margin-bottom: clamp(0.2rem, 0.4vh, 0.35rem); }
+        .phase-content p { font-size: clamp(0.8rem, 1.1vw, 0.95rem); color: var(--text-secondary); line-height: 1.5; }
 
         /* Case cards */
-        .case-card { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(0.6rem, 1.5vw, 1.1rem); display: flex; flex-direction: column; gap: clamp(0.15rem, 0.4vh, 0.3rem); transition: box-shadow 0.3s; }
+        .case-card { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(0.8rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: clamp(0.2rem, 0.5vh, 0.4rem); transition: box-shadow 0.3s; }
         .case-card:hover { box-shadow: 0 4px 20px rgba(46, 158, 110, 0.08); }
-        .case-card .case-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(0.8rem, 1.3vw, 1rem); color: var(--text-primary); }
-        .case-card .case-type { font-family: var(--font-mono); font-size: var(--tag-size); color: var(--green-brand); letter-spacing: 0.1em; text-transform: uppercase; }
-        .case-card .case-stat { font-size: clamp(1rem, 2vw, 1.6rem); font-family: var(--font-display); font-weight: 800; color: var(--green-dark); }
-        .case-card .case-desc { font-size: var(--tag-size); color: var(--text-secondary); }
+        .case-card .case-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(0.95rem, 1.5vw, 1.15rem); color: var(--text-primary); }
+        .case-card .case-type { font-family: var(--font-mono); font-size: var(--small-size); color: var(--green-brand); letter-spacing: 0.1em; text-transform: uppercase; }
+        .case-card .case-stat { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-family: var(--font-display); font-weight: 800; color: var(--green-dark); }
+        .case-card .case-desc { font-size: var(--small-size); color: var(--text-secondary); }
 
         /* Pricing */
-        .pricing-row { display: grid; grid-template-columns: clamp(100px, 15vw, 180px) 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); padding: clamp(0.35rem, 0.7vh, 0.6rem) 0; border-bottom: 1px solid rgba(46, 158, 110, 0.08); }
+        .pricing-row { display: grid; grid-template-columns: clamp(110px, 16vw, 200px) 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); padding: clamp(0.5rem, 1vh, 0.8rem) 0; border-bottom: 1px solid rgba(46, 158, 110, 0.08); }
         .pricing-row:last-child { border-bottom: none; }
         .pricing-label { font-family: var(--font-display); font-weight: 600; font-size: var(--small-size); color: var(--text-primary); }
         .pricing-value { font-size: var(--small-size); color: var(--text-secondary); }
@@ -208,20 +208,20 @@
 
         /* Team */
         .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.5rem, 1.5vw, 1.25rem); }
-        .team-member { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(0.75rem, 2vw, 1.5rem); text-align: center; }
-        .team-member .avatar { width: clamp(40px, 6vw, 64px); height: clamp(40px, 6vw, 64px); border-radius: 50%; background: var(--green-light); border: 2px solid var(--green-brand); display: flex; align-items: center; justify-content: center; margin: 0 auto clamp(0.3rem, 0.8vh, 0.6rem); font-family: var(--font-display); font-weight: 800; font-size: clamp(0.8rem, 1.5vw, 1.2rem); color: var(--green-dark); }
-        .team-member h4 { font-size: clamp(0.8rem, 1.3vw, 1rem); margin-bottom: clamp(0.1rem, 0.2vh, 0.2rem); }
-        .team-member .role { font-size: var(--tag-size); color: var(--green-brand); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
-        .team-member p { font-size: clamp(0.6rem, 0.9vw, 0.75rem); color: var(--text-muted); margin-top: clamp(0.2rem, 0.4vh, 0.35rem); }
+        .team-member { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(1rem, 2.5vw, 1.8rem); text-align: center; }
+        .team-member .avatar { width: clamp(48px, 7vw, 72px); height: clamp(48px, 7vw, 72px); border-radius: 50%; background: var(--green-light); border: 2px solid var(--green-brand); display: flex; align-items: center; justify-content: center; margin: 0 auto clamp(0.4rem, 1vh, 0.7rem); font-family: var(--font-display); font-weight: 800; font-size: clamp(1rem, 1.8vw, 1.4rem); color: var(--green-dark); }
+        .team-member h4 { font-size: clamp(0.95rem, 1.5vw, 1.15rem); margin-bottom: clamp(0.15rem, 0.3vh, 0.25rem); }
+        .team-member .role { font-size: var(--small-size); color: var(--green-brand); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; }
+        .team-member p { font-size: clamp(0.75rem, 1.1vw, 0.9rem); color: var(--text-muted); margin-top: clamp(0.25rem, 0.5vh, 0.4rem); }
 
         /* Checklist */
-        .checklist { list-style: none; display: flex; flex-direction: column; gap: clamp(0.4rem, 1vh, 0.75rem); }
-        .checklist li { position: relative; padding-left: clamp(1.2rem, 2.5vw, 1.8rem); font-size: var(--body-size); color: var(--text-secondary); }
+        .checklist { list-style: none; display: flex; flex-direction: column; gap: clamp(0.5rem, 1.2vh, 0.9rem); }
+        .checklist li { position: relative; padding-left: clamp(1.4rem, 2.8vw, 2rem); font-size: var(--body-size); color: var(--text-secondary); line-height: 1.5; }
         .checklist li::before { content: '☐'; position: absolute; left: 0; color: var(--green-brand); font-size: var(--body-size); }
 
         .sep { width: clamp(30px, 5vw, 60px); height: 3px; background: var(--green-brand); border: none; margin: clamp(0.3rem, 0.8vh, 0.6rem) 0; border-radius: 2px; }
 
-        .slide-footer { position: absolute; bottom: clamp(0.5rem, 1.5vh, 1.25rem); left: var(--slide-padding); right: var(--slide-padding); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: clamp(0.5rem, 0.7vw, 0.65rem); color: var(--text-muted); z-index: 2; }
+        .slide-footer { position: absolute; bottom: clamp(0.75rem, 2vh, 1.5rem); left: var(--slide-padding); right: var(--slide-padding); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: clamp(0.6rem, 0.85vw, 0.8rem); color: var(--text-muted); z-index: 2; }
 
         /* Animations */
         .reveal { opacity: 0; transform: translateY(25px); transition: opacity var(--duration-normal) var(--ease-out-expo), transform var(--duration-normal) var(--ease-out-expo); }
@@ -282,11 +282,11 @@
         }
 
         /* Responsive */
-        @media (max-height: 700px) { :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1.5vw, 1rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); --h2-size: clamp(1rem, 3vw, 1.75rem); } }
-        @media (max-height: 600px) { :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); --content-gap: clamp(0.3rem, 1vw, 0.75rem); --title-size: clamp(1.1rem, 4vw, 2rem); --body-size: clamp(0.7rem, 1.2vw, 0.95rem); } .nav-dots, .decorative, .slide-footer { display: none; } }
-        @media (max-height: 500px) { :root { --slide-padding: clamp(0.4rem, 2vw, 1rem); --title-size: clamp(1rem, 3.5vw, 1.5rem); --h2-size: clamp(0.9rem, 2.5vw, 1.25rem); --body-size: clamp(0.65rem, 1vw, 0.85rem); } }
-        @media (max-width: 768px) { .two-col, .three-col, .team-grid, .eco-branches { grid-template-columns: 1fr; } .timeline-phase { grid-template-columns: clamp(60px, 20vw, 100px) 1fr; } }
-        @media (max-width: 600px) { :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); } .grid { grid-template-columns: 1fr; } }
+        @media (max-height: 700px) { :root { --slide-padding: clamp(1rem, 3vw, 2.5rem); --content-gap: clamp(0.5rem, 1.5vw, 1.25rem); --title-size: clamp(1.5rem, 4.5vw, 3rem); --h2-size: clamp(1.2rem, 3vw, 2rem); --body-size: clamp(0.85rem, 1.4vw, 1.05rem); } }
+        @media (max-height: 600px) { :root { --slide-padding: clamp(0.75rem, 2.5vw, 1.75rem); --content-gap: clamp(0.4rem, 1vw, 1rem); --title-size: clamp(1.3rem, 4vw, 2.5rem); --body-size: clamp(0.8rem, 1.2vw, 1rem); } .nav-dots, .decorative, .slide-footer { display: none; } }
+        @media (max-height: 500px) { :root { --slide-padding: clamp(0.5rem, 2vw, 1.25rem); --title-size: clamp(1.1rem, 3.5vw, 1.8rem); --h2-size: clamp(1rem, 2.5vw, 1.5rem); --body-size: clamp(0.75rem, 1vw, 0.9rem); } }
+        @media (max-width: 768px) { .two-col, .three-col, .team-grid, .eco-branches { grid-template-columns: 1fr; } .timeline-phase { grid-template-columns: clamp(70px, 22vw, 110px) 1fr; } :root { --body-size: clamp(0.9rem, 2.5vw, 1.1rem); --small-size: clamp(0.8rem, 2vw, 1rem); } }
+        @media (max-width: 600px) { :root { --title-size: clamp(1.5rem, 7vw, 2.8rem); --h2-size: clamp(1.3rem, 5.5vw, 2rem); } .grid { grid-template-columns: 1fr; } }
         @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; } html { scroll-behavior: auto; } }
 
         /* Inline editing */
@@ -418,6 +418,69 @@
             </table>
         </div>
         <div class="slide-footer"><span>Growth4U × Uni2Chain</span><span data-es="03 · Diagnóstico" data-en="03 · Diagnosis">03 · Diagnóstico</span></div>
+    </section>
+
+
+    <!-- SLIDE 4B: TRUSTSCORE GROWTH4U -->
+    <section class="slide slide--content">
+        <div class="slide-content">
+            <div class="slide-header">
+                <span class="num">03</span>
+                <h2 data-es="TrustScore — Auditoría de Confianza Digital" data-en="TrustScore — Digital Trust Audit">TrustScore — Auditoría de Confianza Digital</h2>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: clamp(0.75rem, 2vw, 1.5rem); margin-bottom: clamp(0.3rem, 0.8vh, 0.5rem);" class="reveal">
+                <div style="position: relative; width: clamp(60px, 8vw, 90px); height: clamp(60px, 8vw, 90px); flex-shrink: 0;">
+                    <svg viewBox="0 0 36 36" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+                        <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(46,158,110,0.12)" stroke-width="3"/>
+                        <circle cx="18" cy="18" r="16" fill="none" stroke="var(--red-alert)" stroke-width="3" stroke-dasharray="43.2 100.53" stroke-linecap="round"/>
+                    </svg>
+                    <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <span style="font-family: var(--font-display); font-weight: 800; font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: var(--red-alert); line-height: 1;">43</span>
+                        <span style="font-size: clamp(0.5rem, 0.7vw, 0.65rem); color: var(--text-muted); font-family: var(--font-mono);">/100</span>
+                    </div>
+                </div>
+                <div>
+                    <p style="font-size: var(--body-size); color: var(--text-primary); font-weight: 600;" data-es="Uni2Chain tiene fundamentos técnicos sólidos pero sufre de <span style='color: var(--red-alert)'>invisibilidad crítica</span>: sin analytics, sin reviews externas, sin presencia en LLMs." data-en="Uni2Chain has solid technical foundations but suffers from <span style='color: var(--red-alert)'>critical invisibility</span>: no analytics, no external reviews, no LLM presence.">Uni2Chain tiene fundamentos técnicos sólidos pero sufre de <span style="color: var(--red-alert)">invisibilidad crítica</span>: sin analytics, sin reviews externas, sin presencia en LLMs.</p>
+                </div>
+            </div>
+
+            <div class="three-col reveal">
+                <div class="info-card" style="padding: clamp(0.6rem, 1.5vw, 1rem);">
+                    <h4 style="font-size: var(--small-size);">🔍 SERP Trust</h4>
+                    <p style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--font-display); font-weight: 800; color: var(--green-dark); margin: clamp(0.15rem, 0.3vh, 0.25rem) 0;">70<span style="font-size: 0.6em; color: var(--text-muted);">/100</span></p>
+                    <p style="font-size: var(--tag-size);" data-es="Domina brand search (#1) pero invisible en búsquedas de categoría" data-en="Dominates brand search (#1) but invisible in category searches">Domina brand search (#1) pero invisible en búsquedas de categoría</p>
+                </div>
+                <div class="info-card" style="padding: clamp(0.6rem, 1.5vw, 1rem);">
+                    <h4 style="font-size: var(--small-size);">📣 Outbound</h4>
+                    <p style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--font-display); font-weight: 800; color: var(--gold); margin: clamp(0.15rem, 0.3vh, 0.25rem) 0;">60<span style="font-size: 0.6em; color: var(--text-muted);">/100</span></p>
+                    <p style="font-size: var(--tag-size);" data-es="Meta tags OK, Open Graph configurado. Falta H1 tag crítico" data-en="Meta tags OK, Open Graph configured. Missing critical H1 tag">Meta tags OK, Open Graph configurado. Falta H1 tag crítico</p>
+                </div>
+                <div class="info-card" style="padding: clamp(0.6rem, 1.5vw, 1rem);">
+                    <h4 style="font-size: var(--small-size);">⚡ Demand Engine</h4>
+                    <p style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--font-display); font-weight: 800; color: var(--gold); margin: clamp(0.15rem, 0.3vh, 0.25rem) 0;">45<span style="font-size: 0.6em; color: var(--text-muted);">/100</span></p>
+                    <p style="font-size: var(--tag-size);" data-es="0 analytics (GA4, GTM, Pixel). Sitemap no accesible" data-en="0 analytics (GA4, GTM, Pixel). Sitemap not accessible">0 analytics (GA4, GTM, Pixel). Sitemap no accesible</p>
+                </div>
+            </div>
+
+            <div class="two-col reveal" style="margin-top: clamp(0.2rem, 0.5vh, 0.3rem);">
+                <div class="info-card" style="padding: clamp(0.6rem, 1.5vw, 1rem);">
+                    <h4 style="font-size: var(--small-size);">🎨 Brand Assets</h4>
+                    <p style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--font-display); font-weight: 800; color: var(--red-alert); margin: clamp(0.15rem, 0.3vh, 0.25rem) 0;">35<span style="font-size: 0.6em; color: var(--text-muted);">/100</span></p>
+                    <p style="font-size: var(--tag-size);" data-es="0 reviews en G2/Trustpilot/Capterra. Sin testimonios ni logos de clientes" data-en="0 reviews on G2/Trustpilot/Capterra. No testimonials or client logos">0 reviews en G2/Trustpilot/Capterra. Sin testimonios ni logos de clientes</p>
+                </div>
+                <div class="info-card" style="padding: clamp(0.6rem, 1.5vw, 1rem);">
+                    <h4 style="font-size: var(--small-size);">🤖 GEO Presence</h4>
+                    <p style="font-size: clamp(1.1rem, 2vw, 1.5rem); font-family: var(--font-display); font-weight: 800; color: var(--red-alert); margin: clamp(0.15rem, 0.3vh, 0.25rem) 0;">15<span style="font-size: 0.6em; color: var(--text-muted);">/100</span></p>
+                    <p style="font-size: var(--tag-size);" data-es="LLMs NO recomiendan Uni2Chain. Citan Polygon, Arbitrum, BNB Chain" data-en="LLMs do NOT recommend Uni2Chain. They cite Polygon, Arbitrum, BNB Chain">LLMs NO recomiendan Uni2Chain. Citan Polygon, Arbitrum, BNB Chain</p>
+                </div>
+            </div>
+
+            <div class="highlight-box highlight-box--red reveal" style="margin-top: clamp(0.2rem, 0.5vh, 0.3rem);">
+                <p style="font-size: var(--small-size);" data-es="<strong>Top Gaps:</strong> Sin herramientas de analytics (imposible medir funnel) · 0 reviews en plataformas externas · Invisible en LLMs y rankings del sector · Falta en L2Beat, DeFiLlama, CoinGecko, Messari" data-en="<strong>Top Gaps:</strong> No analytics tools (can't measure funnel) · 0 external platform reviews · Invisible in LLMs and sector rankings · Missing from L2Beat, DeFiLlama, CoinGecko, Messari"><strong>Top Gaps:</strong> Sin herramientas de analytics (imposible medir funnel) · 0 reviews en plataformas externas · Invisible en LLMs y rankings del sector · Falta en L2Beat, DeFiLlama, CoinGecko, Messari</p>
+            </div>
+        </div>
+        <div class="slide-footer"><span>Growth4U × Uni2Chain</span><span data-es="03 · TrustScore" data-en="03 · TrustScore">03 · TrustScore</span></div>
     </section>
 
 
