@@ -17,19 +17,19 @@
            =========================================== */
         :root {
             --bg-primary: #ffffff;
-            --bg-secondary: #f7f9fb;
-            --bg-card: #f0f4f3;
-            --bg-card-hover: #e8edec;
-            --bg-dark-section: #0f1f1a;
+            --bg-secondary: #f5f7fa;
+            --bg-card: #eef1f6;
+            --bg-card-hover: #e4e8ef;
+            --bg-dark-section: #0f172a;
 
-            --green-brand: #2e9e6e;
-            --green-dark: #1a7a54;
-            --green-deeper: #146347;
-            --green-light: #e6f5ee;
-            --green-lighter: #f0faf5;
-            --green-accent: #3cb371;
-            --green-muted: rgba(46, 158, 110, 0.12);
-            --green-glow: rgba(46, 158, 110, 0.08);
+            --green-brand: #0891b2;
+            --green-dark: #0e7490;
+            --green-deeper: #155e75;
+            --green-light: #ecfeff;
+            --green-lighter: #f0fdfa;
+            --green-accent: #22d3ee;
+            --green-muted: rgba(8, 145, 178, 0.12);
+            --green-glow: rgba(8, 145, 178, 0.08);
 
             --gold: #c8963e;
             --gold-light: #fdf6ea;
@@ -37,13 +37,13 @@
 
             --red-alert: #d94452;
             --red-light: #fef2f2;
-            --red-muted: rgba(217, 68, 82, 0.08);
+            --red-muted: rgba(220, 38, 38, 0.08);
 
-            --text-primary: #1a2b25;
-            --text-secondary: #506a60;
-            --text-muted: #8fa39a;
-            --text-on-dark: #e8f0ec;
-            --text-on-dark-muted: #9ab5a8;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --text-on-dark: #e2e8f0;
+            --text-on-dark-muted: #94a3b8;
 
             --font-display: 'Syne', sans-serif;
             --font-body: 'DM Sans', sans-serif;
@@ -101,14 +101,14 @@
         /* Background grid */
         .slide::before {
             content: ''; position: absolute; inset: 0;
-            background-image: linear-gradient(rgba(46, 158, 110, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(46, 158, 110, 0.04) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(8, 145, 178, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(8, 145, 178, 0.04) 1px, transparent 1px);
             background-size: 80px 80px; pointer-events: none; z-index: 0;
         }
         .slide > * { position: relative; z-index: 1; }
 
         /* Title slide (dark) */
         .slide--title { background: var(--bg-dark-section); justify-content: center; align-items: center; text-align: center; }
-        .slide--title::before { background-image: linear-gradient(rgba(46, 158, 110, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(46, 158, 110, 0.06) 1px, transparent 1px); background-size: 60px 60px; }
+        .slide--title::before { background-image: linear-gradient(rgba(8, 145, 178, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(8, 145, 178, 0.06) 1px, transparent 1px); background-size: 60px 60px; }
         .slide--title .slide-content { align-items: center; gap: clamp(0.75rem, 2vh, 1.5rem); }
         .slide--title h1 { color: var(--text-on-dark); font-weight: 800; font-size: clamp(2.4rem, 6vw, 5rem); }
         .slide--title h1 .green { color: var(--green-accent); }
@@ -117,7 +117,7 @@
 
         /* Section header (dark) */
         .slide--section { background: var(--bg-dark-section); }
-        .slide--section::before { background-image: radial-gradient(circle at 30% 70%, rgba(46, 158, 110, 0.1) 0%, transparent 50%), linear-gradient(rgba(46, 158, 110, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(46, 158, 110, 0.05) 1px, transparent 1px); background-size: 100% 100%, 60px 60px, 60px 60px; }
+        .slide--section::before { background-image: radial-gradient(circle at 30% 70%, rgba(8, 145, 178, 0.1) 0%, transparent 50%), linear-gradient(rgba(8, 145, 178, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(8, 145, 178, 0.05) 1px, transparent 1px); background-size: 100% 100%, 60px 60px, 60px 60px; }
         .slide--section .section-number { font-family: var(--font-mono); font-size: clamp(0.7rem, 1.2vw, 1rem); color: var(--green-accent); letter-spacing: 0.15em; text-transform: uppercase; }
         .slide--section h2 { font-size: clamp(2.2rem, 5.5vw, 4rem); font-weight: 800; color: var(--text-on-dark); margin-top: clamp(0.5rem, 1.5vh, 1rem); }
         .slide--section p { color: var(--text-on-dark-muted); }
@@ -132,14 +132,14 @@
 
         /* Tags */
         .tag { display: inline-block; padding: clamp(0.15rem, 0.4vh, 0.3rem) clamp(0.4rem, 1vw, 0.75rem); border-radius: 100px; font-family: var(--font-mono); font-size: var(--tag-size); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
-        .tag--green { background: var(--green-light); color: var(--green-dark); border: 1px solid rgba(46, 158, 110, 0.2); }
+        .tag--green { background: var(--green-light); color: var(--green-dark); border: 1px solid rgba(8, 145, 178, 0.2); }
         .tag--gold { background: var(--gold-light); color: var(--gold); border: 1px solid rgba(200, 150, 62, 0.2); }
-        .tag--red { background: var(--red-light); color: var(--red-alert); border: 1px solid rgba(217, 68, 82, 0.15); }
-        .slide--section .tag--green, .slide--title .tag--green { background: rgba(46, 158, 110, 0.15); color: var(--green-accent); border-color: rgba(60, 179, 113, 0.3); }
+        .tag--red { background: var(--red-light); color: var(--red-alert); border: 1px solid rgba(220, 38, 38, 0.15); }
+        .slide--section .tag--green, .slide--title .tag--green { background: rgba(8, 145, 178, 0.15); color: var(--green-accent); border-color: rgba(34, 211, 238, 0.3); }
 
         /* Cards */
-        .info-card { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(10px, 1.2vw, 18px); padding: clamp(1rem, 2.5vw, 2rem); transition: border-color 0.3s ease, box-shadow 0.3s ease; }
-        .info-card:hover { border-color: rgba(46, 158, 110, 0.25); box-shadow: 0 4px 20px rgba(46, 158, 110, 0.06); }
+        .info-card { background: var(--bg-secondary); border: 1px solid rgba(8, 145, 178, 0.1); border-radius: clamp(10px, 1.2vw, 18px); padding: clamp(1rem, 2.5vw, 2rem); transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+        .info-card:hover { border-color: rgba(8, 145, 178, 0.25); box-shadow: 0 4px 20px rgba(8, 145, 178, 0.06); }
         .info-card h4 { font-size: clamp(1rem, 1.6vw, 1.25rem); color: var(--text-primary); margin-bottom: clamp(0.3rem, 0.6vh, 0.6rem); }
         .info-card p { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.5; }
 
@@ -155,7 +155,7 @@
         /* Tables */
         .data-table { width: 100%; border-collapse: collapse; font-size: var(--small-size); }
         .data-table th { font-family: var(--font-display); font-weight: 600; font-size: var(--small-size); color: var(--green-dark); text-align: left; padding: clamp(0.5rem, 1vh, 0.8rem) clamp(0.6rem, 1.2vw, 1rem); border-bottom: 2px solid var(--green-brand); letter-spacing: 0.05em; text-transform: uppercase; }
-        .data-table td { padding: clamp(0.5rem, 0.9vh, 0.75rem) clamp(0.6rem, 1.2vw, 1rem); border-bottom: 1px solid rgba(46, 158, 110, 0.08); color: var(--text-secondary); vertical-align: top; line-height: 1.5; }
+        .data-table td { padding: clamp(0.5rem, 0.9vh, 0.75rem) clamp(0.6rem, 1.2vw, 1rem); border-bottom: 1px solid rgba(8, 145, 178, 0.08); color: var(--text-secondary); vertical-align: top; line-height: 1.5; }
         .data-table td:first-child { color: var(--text-primary); font-weight: 600; white-space: nowrap; }
         .data-table tr:last-child td { border-bottom: none; }
 
@@ -172,12 +172,12 @@
 
         /* Ecosystem diagram */
         .eco-hub { display: flex; flex-direction: column; align-items: center; gap: clamp(0.5rem, 1.5vh, 1.25rem); }
-        .eco-center { background: var(--green-light); border: 2px solid var(--green-brand); border-radius: clamp(8px, 1vw, 16px); padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem); text-align: center; box-shadow: 0 4px 24px rgba(46, 158, 110, 0.12); }
+        .eco-center { background: var(--green-light); border: 2px solid var(--green-brand); border-radius: clamp(8px, 1vw, 16px); padding: clamp(0.5rem, 1.5vw, 1rem) clamp(1rem, 3vw, 2rem); text-align: center; box-shadow: 0 4px 24px rgba(8, 145, 178, 0.12); }
         .eco-center h3 { color: var(--green-dark); font-size: clamp(1.1rem, 2.2vw, 1.6rem); }
         .eco-center p { font-size: var(--tag-size); color: var(--text-muted); }
         .eco-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.4rem, 1vw, 0.75rem); width: 100%; max-width: min(90vw, 900px); }
-        .eco-node { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.12); border-radius: clamp(6px, 0.8vw, 12px); padding: clamp(0.4rem, 1vw, 0.75rem); text-align: center; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
-        .eco-node:hover { border-color: var(--green-brand); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(46, 158, 110, 0.1); }
+        .eco-node { background: var(--bg-secondary); border: 1px solid rgba(8, 145, 178, 0.12); border-radius: clamp(6px, 0.8vw, 12px); padding: clamp(0.4rem, 1vw, 0.75rem); text-align: center; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; }
+        .eco-node:hover { border-color: var(--green-brand); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(8, 145, 178, 0.1); }
         .eco-node .node-icon { font-size: clamp(1.2rem, 2.2vw, 1.8rem); margin-bottom: clamp(0.2rem, 0.4vh, 0.4rem); }
         .eco-node h4 { font-size: clamp(0.9rem, 1.4vw, 1.1rem); color: var(--text-primary); }
         .eco-node p { font-size: clamp(0.75rem, 1vw, 0.9rem); color: var(--text-muted); }
@@ -192,15 +192,15 @@
         .phase-content p { font-size: clamp(0.8rem, 1.1vw, 0.95rem); color: var(--text-secondary); line-height: 1.5; }
 
         /* Case cards */
-        .case-card { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(0.8rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: clamp(0.2rem, 0.5vh, 0.4rem); transition: box-shadow 0.3s; height: 100%; }
-        .case-card:hover { box-shadow: 0 4px 20px rgba(46, 158, 110, 0.08); }
+        .case-card { background: var(--bg-secondary); border: 1px solid rgba(8, 145, 178, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(0.8rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: clamp(0.2rem, 0.5vh, 0.4rem); transition: box-shadow 0.3s; height: 100%; }
+        .case-card:hover { box-shadow: 0 4px 20px rgba(8, 145, 178, 0.08); }
         .case-card .case-name { font-family: var(--font-display); font-weight: 700; font-size: clamp(0.95rem, 1.5vw, 1.15rem); color: var(--text-primary); }
         .case-card .case-type { font-family: var(--font-mono); font-size: var(--small-size); color: var(--green-brand); letter-spacing: 0.1em; text-transform: uppercase; }
         .case-card .case-stat { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-family: var(--font-display); font-weight: 800; color: var(--green-dark); }
         .case-card .case-desc { font-size: var(--small-size); color: var(--text-secondary); }
 
         /* Pricing */
-        .pricing-row { display: grid; grid-template-columns: clamp(110px, 16vw, 200px) 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); padding: clamp(0.5rem, 1vh, 0.8rem) 0; border-bottom: 1px solid rgba(46, 158, 110, 0.08); }
+        .pricing-row { display: grid; grid-template-columns: clamp(110px, 16vw, 200px) 1fr; gap: clamp(0.5rem, 1.5vw, 1rem); padding: clamp(0.5rem, 1vh, 0.8rem) 0; border-bottom: 1px solid rgba(8, 145, 178, 0.08); }
         .pricing-row:last-child { border-bottom: none; }
         .pricing-label { font-family: var(--font-display); font-weight: 600; font-size: var(--small-size); color: var(--text-primary); }
         .pricing-value { font-size: var(--small-size); color: var(--text-secondary); }
@@ -208,7 +208,7 @@
 
         /* Team */
         .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(0.5rem, 1.5vw, 1.25rem); }
-        .team-member { background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(1rem, 2.5vw, 1.8rem); text-align: center; }
+        .team-member { background: var(--bg-secondary); border: 1px solid rgba(8, 145, 178, 0.1); border-radius: clamp(8px, 1vw, 14px); padding: clamp(1rem, 2.5vw, 1.8rem); text-align: center; }
         .team-member .avatar { width: clamp(56px, 8vw, 88px); height: clamp(56px, 8vw, 88px); border-radius: 50%; background: var(--green-light); border: 2px solid var(--green-brand); display: flex; align-items: center; justify-content: center; margin: 0 auto clamp(0.4rem, 1vh, 0.7rem); font-family: var(--font-display); font-weight: 800; font-size: clamp(1rem, 1.8vw, 1.4rem); color: var(--green-dark); overflow: hidden; }
         .team-member .avatar img { width: 100%; height: 100%; object-fit: cover; }
         .team-member h4 { font-size: clamp(0.95rem, 1.5vw, 1.15rem); margin-bottom: clamp(0.15rem, 0.3vh, 0.25rem); }
@@ -248,7 +248,7 @@
             right: clamp(2rem, 4vw, 3rem);
             display: flex;
             background: var(--bg-secondary);
-            border: 1px solid rgba(46, 158, 110, 0.2);
+            border: 1px solid rgba(8, 145, 178, 0.2);
             border-radius: 8px;
             overflow: hidden;
             z-index: 10001;
@@ -278,8 +278,8 @@
         /* Dark slide lang toggle override */
         .slide--section .lang-toggle,
         .slide--title .lang-toggle {
-            background: rgba(15, 31, 26, 0.8);
-            border-color: rgba(60, 179, 113, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(34, 211, 238, 0.3);
         }
 
         /* Responsive */
@@ -292,11 +292,11 @@
 
         /* Inline editing */
         .edit-hotzone { position: fixed; top: 0; left: 0; width: 80px; height: 80px; z-index: 10000; cursor: pointer; }
-        .edit-toggle { position: fixed; top: clamp(0.5rem, 1.5vh, 1rem); left: clamp(0.5rem, 1.5vw, 1rem); background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.2); color: var(--green-dark); font-size: clamp(0.7rem, 1vw, 0.9rem); padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.5rem, 1vw, 0.75rem); border-radius: 8px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, background 0.3s ease; z-index: 10001; font-family: var(--font-mono); }
+        .edit-toggle { position: fixed; top: clamp(0.5rem, 1.5vh, 1rem); left: clamp(0.5rem, 1.5vw, 1rem); background: var(--bg-secondary); border: 1px solid rgba(8, 145, 178, 0.2); color: var(--green-dark); font-size: clamp(0.7rem, 1vw, 0.9rem); padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.5rem, 1vw, 0.75rem); border-radius: 8px; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity 0.3s ease, background 0.3s ease; z-index: 10001; font-family: var(--font-mono); }
         .edit-toggle.show, .edit-toggle.active { opacity: 1; pointer-events: auto; }
         .edit-toggle.active { background: var(--green-brand); color: white; }
-        [contenteditable="true"] { outline: 2px dashed rgba(46, 158, 110, 0.35); outline-offset: 4px; border-radius: 4px; }
-        .edit-toolbar { position: fixed; bottom: clamp(0.5rem, 1.5vh, 1rem); left: 50%; transform: translateX(-50%); background: var(--bg-secondary); border: 1px solid rgba(46, 158, 110, 0.2); border-radius: 12px; padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.75rem, 1.5vw, 1.25rem); display: none; gap: clamp(0.5rem, 1vw, 1rem); align-items: center; z-index: 10001; font-family: var(--font-mono); font-size: var(--tag-size); color: var(--text-secondary); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08); }
+        [contenteditable="true"] { outline: 2px dashed rgba(8, 145, 178, 0.35); outline-offset: 4px; border-radius: 4px; }
+        .edit-toolbar { position: fixed; bottom: clamp(0.5rem, 1.5vh, 1rem); left: 50%; transform: translateX(-50%); background: var(--bg-secondary); border: 1px solid rgba(8, 145, 178, 0.2); border-radius: 12px; padding: clamp(0.3rem, 0.6vh, 0.5rem) clamp(0.75rem, 1.5vw, 1.25rem); display: none; gap: clamp(0.5rem, 1vw, 1rem); align-items: center; z-index: 10001; font-family: var(--font-mono); font-size: var(--tag-size); color: var(--text-secondary); box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08); }
         .edit-toolbar.show { display: flex; }
         .edit-toolbar button { background: var(--green-light); border: 1px solid var(--green-brand); color: var(--green-dark); padding: clamp(0.2rem, 0.4vh, 0.35rem) clamp(0.5rem, 1vw, 0.75rem); border-radius: 6px; cursor: pointer; font-family: var(--font-mono); font-size: var(--tag-size); transition: background 0.2s; }
         .edit-toolbar button:hover { background: var(--green-brand); color: white; }
